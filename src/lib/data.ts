@@ -34,8 +34,9 @@ export interface SocialLink {
 
 export const personalInfo = {
   name: 'Sungman Cho',
-  title: 'Founder — Ship Fast, Build Often',
-  subtitle: 'Love tech. Love people. Shape tomorrow.',
+  firstName: 'Sungman',
+  role: 'Founder',
+  tagline: 'Fast iterate, Listen more.',
   location: 'Seoul, Korea',
   email: 'sungman.cho@tbdlabs.team',
 }

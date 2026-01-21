@@ -89,50 +89,31 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.p
-            className="text-nova font-mono text-sm mb-4 tracking-wider"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+          <motion.h1
+            className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-star-bright mb-2 sm:mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Welcome to my constellation
+            {personalInfo.firstName}.
+          </motion.h1>
+
+          <motion.p
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gradient mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            {personalInfo.role}.
           </motion.p>
 
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-star-bright mb-4 sm:mb-6">
-            <motion.span
-              className="block"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              {personalInfo.name.split(' ')[0]}
-            </motion.span>
-            <motion.span
-              className="block text-gradient"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              {personalInfo.name.split(' ')[1]}
-            </motion.span>
-          </h1>
-
           <motion.p
-            className="text-star-dim text-lg sm:text-xl lg:text-2xl max-w-2xl mx-auto mb-6 sm:mb-8 px-2"
+            className="text-star-dim text-lg sm:text-xl lg:text-2xl max-w-2xl mx-auto mb-8 sm:mb-12 px-2 font-mono tracking-wide"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.6 }}
           >
-            {personalInfo.title}
-          </motion.p>
-
-          <motion.p
-            className="text-star-dim/70 text-base sm:text-lg max-w-xl mx-auto mb-8 sm:mb-12 px-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-          >
-            {personalInfo.subtitle}
+            {personalInfo.tagline}
           </motion.p>
 
           {/* Social Links */}
