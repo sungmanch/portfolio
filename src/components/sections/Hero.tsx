@@ -1,7 +1,26 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { personalInfo, socialLinks } from '@/lib/data'
+
+// Generate star positions only on client side to avoid hydration mismatch
+function useStarPositions(count: number) {
+  const [positions, setPositions] = useState<Array<{ left: number; top: number; duration: number; delay: number }>>([])
+
+  useEffect(() => {
+    setPositions(
+      Array.from({ length: count }, () => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: 2 + Math.random() * 3,
+        delay: Math.random() * 2,
+      }))
+    )
+  }, [count])
+
+  return positions
+}
 
 const iconMap = {
   blog: (
@@ -32,26 +51,29 @@ const iconMap = {
 }
 
 export function Hero() {
+  const starPositions = useStarPositions(50)
+
   return (
     <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden">
       {/* Animated background stars */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
+        {starPositions.map((star, i) => (
           <motion.div
             key={i}
             className="star star-sm"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
             }}
+            initial={{ opacity: 0 }}
             animate={{
               opacity: [0.2, 1, 0.2],
               scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: 2 + Math.random() * 3,
+              duration: star.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}
