@@ -58,8 +58,7 @@ export function Contact() {
           </h2>
 
           <p className="text-star-dim text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-xl mx-auto">
-            I&apos;m always interested in hearing about new opportunities,
-            collaborations, or just having a chat about technology and research.
+            I&apos;d love to hear your stories and perspectives.
           </p>
 
           {/* Email CTA */}
