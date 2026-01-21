@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Star {
   id: number
@@ -18,15 +18,19 @@ interface StarFieldProps {
 }
 
 export function StarField({ count = 100, className = '' }: StarFieldProps) {
-  const stars = useMemo<Star[]>(() => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() < 0.6 ? 'sm' : Math.random() < 0.9 ? 'md' : 'lg',
-      delay: Math.random() * 3,
-      duration: 2 + Math.random() * 3,
-    }))
+  const [stars, setStars] = useState<Star[]>([])
+
+  useEffect(() => {
+    setStars(
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() < 0.6 ? 'sm' : Math.random() < 0.9 ? 'md' : 'lg',
+        delay: Math.random() * 3,
+        duration: 2 + Math.random() * 3,
+      }))
+    )
   }, [count])
 
   const sizeClasses = {
