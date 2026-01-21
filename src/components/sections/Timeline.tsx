@@ -27,14 +27,14 @@ export function Timeline() {
         Journey Through the Stars
       </SectionTitle>
 
-      <div ref={containerRef} className="relative mt-16">
+      <div ref={containerRef} className="relative mt-10 sm:mt-12 lg:mt-16">
         {/* Constellation SVG overlay */}
         <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-full h-full">
           <Constellation progress={progress} nodeCount={careerTimeline.length} />
         </div>
 
-        {/* Mobile: Vertical line */}
-        <div className="lg:hidden absolute left-6 top-0 bottom-0 w-px bg-cosmos">
+        {/* Mobile & Tablet: Vertical line */}
+        <div className="lg:hidden absolute left-4 sm:left-6 top-0 bottom-0 w-px bg-cosmos">
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-nova via-pulsar to-supernova"
             style={{ scaleY: progress, transformOrigin: 'top' }}
@@ -42,7 +42,7 @@ export function Timeline() {
         </div>
 
         {/* Timeline milestones */}
-        <div className="relative space-y-16 lg:space-y-24">
+        <div className="relative space-y-12 sm:space-y-16 lg:space-y-24">
           {careerTimeline.map((milestone, index) => {
             const milestoneProgress = index / (careerTimeline.length - 1)
             const isActive = Math.abs(progress - milestoneProgress) < 0.15

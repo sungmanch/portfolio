@@ -30,9 +30,9 @@ export function Milestone({ milestone, index, isActive, progress }: MilestonePro
 
   return (
     <div className={`relative flex items-center ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-      {/* Star node */}
+      {/* Star node - positioned at left timeline on mobile, centered on desktop */}
       <motion.div
-        className="absolute left-1/2 -translate-x-1/2 z-10 lg:static lg:translate-x-0"
+        className="absolute left-4 sm:left-6 -translate-x-1/2 z-10 lg:static lg:translate-x-0"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
           scale: isActive ? [1, 1.2, 1] : 1,
@@ -62,7 +62,7 @@ export function Milestone({ milestone, index, isActive, progress }: MilestonePro
       {/* Card */}
       <motion.div
         className={`
-          flex-1 ml-12 lg:ml-0
+          flex-1 ml-10 sm:ml-12 lg:ml-0
           ${isLeft ? 'lg:mr-12 lg:text-right' : 'lg:ml-12 lg:text-left'}
         `}
         initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
@@ -74,51 +74,65 @@ export function Milestone({ milestone, index, isActive, progress }: MilestonePro
       >
         <div
           className={`
-            card p-6 backdrop-blur-sm
+            card p-4 sm:p-6 backdrop-blur-sm
             ${isActive ? 'border-nova/30 bg-nebula/80' : ''}
           `}
         >
           {/* Year badge */}
-          <div className={`inline-flex items-center gap-2 mb-3 ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
-            <span className={`text-${color} font-mono text-2xl font-bold`}>
+          <div className={`inline-flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 flex-wrap ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
+            <span className={`text-${color} font-mono text-xl sm:text-2xl font-bold`}>
               {milestone.year}
             </span>
             <span
               className={`
-                px-2 py-0.5 text-xs font-mono rounded-full
+                px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-mono rounded-full
                 bg-${color}/10 text-${color} border border-${color}/30
               `}
             >
               {typeLabels[milestone.type]}
             </span>
+            {milestone.current && (
+              <span className="px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-mono rounded-full bg-supernova/20 text-supernova border border-supernova/50 animate-pulse">
+                Current
+              </span>
+            )}
           </div>
 
           {/* Title */}
-          <h3 className="font-display text-xl text-star-bright mb-2">
+          <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-star-bright mb-1.5 sm:mb-2">
             {milestone.title}
           </h3>
 
           {/* Description */}
-          <p className="text-star-dim text-sm leading-relaxed">
+          <p className="text-star-dim text-xs sm:text-sm leading-relaxed whitespace-pre-line">
             {milestone.description}
           </p>
 
           {/* Project Cards */}
           {milestone.projects && milestone.projects.length > 0 && (
-            <div className={`mt-6 pt-6 border-t border-cosmos`}>
-              <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ${isLeft ? 'lg:text-left' : ''}`}>
+            <div className={`mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-cosmos`}>
+              <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 ${isLeft ? 'lg:text-left' : ''}`}>
                 {milestone.projects.map((project, idx) => (
                   <motion.div
                     key={idx}
-                    className="p-4 rounded-lg bg-deep-space/50 border border-cosmos hover:border-nova/30 transition-colors"
+                    className={`p-3 sm:p-4 rounded-lg transition-colors ${
+                      project.featured
+                        ? 'bg-nova/10 border-2 border-nova/50 hover:border-nova/70'
+                        : 'bg-deep-space/50 border border-cosmos hover:border-nova/30'
+                    }`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 * idx }}
                   >
-                    <h4 className="text-star-bright font-medium text-sm mb-1">
+                    {project.featured && (
+                      <span className="inline-block text-[10px] font-mono text-nova mb-1.5 sm:mb-2 px-1.5 py-0.5 bg-nova/20 rounded">
+                        Featured Project
+                      </span>
+                    )}
+                    <h4 className={`font-medium text-xs sm:text-sm mb-1 ${project.featured ? 'text-nova' : 'text-star-bright'}`}>
                       {project.name}
                     </h4>
-                    <p className="text-star-dim text-xs leading-relaxed">
+                    <p className="text-star-dim text-[11px] sm:text-xs leading-relaxed">
                       {project.description}
                     </p>
                     {project.link && (
@@ -126,7 +140,7 @@ export function Milestone({ milestone, index, isActive, progress }: MilestonePro
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block mt-2 text-nova text-xs hover:underline"
+                        className="inline-block mt-1.5 sm:mt-2 text-nova text-[11px] sm:text-xs hover:underline"
                       >
                         View →
                       </a>

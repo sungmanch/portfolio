@@ -8,8 +8,7 @@ const navItems = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'timeline', label: 'Journey' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'publications', label: 'Research' },
+  { id: 'memories', label: 'Memories' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -91,14 +90,14 @@ export function Navigation() {
 
       {/* Mobile Navigation */}
       <motion.div
-        className="fixed top-6 right-6 z-50 lg:hidden"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 lg:hidden"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-12 h-12 rounded-full bg-nebula/80 backdrop-blur-sm border border-cosmos flex items-center justify-center"
+          className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-nebula/80 backdrop-blur-sm border border-cosmos flex items-center justify-center"
           aria-label="Toggle navigation"
         >
           <div className="flex flex-col gap-1.5">
@@ -128,8 +127,8 @@ export function Navigation() {
             exit={{ opacity: 0 }}
           >
             <div className="absolute inset-0 bg-void/95 backdrop-blur-lg" />
-            <nav className="relative h-full flex items-center justify-center">
-              <ul className="space-y-6 text-center">
+            <nav className="relative h-full flex items-center justify-center px-6">
+              <ul className="space-y-5 sm:space-y-6 text-center">
                 {navItems.map(({ id, label }, index) => (
                   <motion.li
                     key={id}
@@ -141,7 +140,7 @@ export function Navigation() {
                     <button
                       onClick={() => scrollToSection(id)}
                       className={`
-                        text-2xl font-display transition-colors duration-300
+                        text-xl sm:text-2xl font-display transition-colors duration-300
                         ${activeSection === id ? 'text-nova' : 'text-star-bright hover:text-nova'}
                       `}
                     >

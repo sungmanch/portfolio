@@ -16,8 +16,8 @@ const variantStyles = {
 }
 
 const sizeStyles = {
-  sm: 'px-2 py-0.5 text-xs',
-  md: 'px-3 py-1 text-sm',
+  sm: 'px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs',
+  md: 'px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm',
 }
 
 export function Badge({ children, variant = 'default', size = 'sm' }: BadgeProps) {

@@ -20,7 +20,7 @@ export function Section({ id, children, className = '', fullHeight = false }: Se
       ref={ref}
       id={id}
       className={`
-        relative py-20 lg:py-32
+        relative py-16 sm:py-20 md:py-24 lg:py-32
         ${fullHeight ? 'min-h-screen flex items-center' : ''}
         ${className}
       `}
@@ -42,9 +42,9 @@ interface SectionTitleProps {
 
 export function SectionTitle({ children, subtitle }: SectionTitleProps) {
   return (
-    <div className="mb-12 lg:mb-16">
+    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
       <motion.h2
-        className="font-display text-4xl lg:text-5xl text-star-bright mb-4"
+        className="font-display text-3xl sm:text-4xl lg:text-5xl text-star-bright mb-3 sm:mb-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -54,7 +54,7 @@ export function SectionTitle({ children, subtitle }: SectionTitleProps) {
       </motion.h2>
       {subtitle && (
         <motion.p
-          className="text-star-dim text-lg max-w-2xl"
+          className="text-star-dim text-base sm:text-lg max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

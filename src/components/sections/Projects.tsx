@@ -13,7 +13,7 @@ export function Projects() {
       </SectionTitle>
 
       {/* Bento grid layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {projects.map((project, index) => {
           // Featured projects span 2 columns on larger screens
           const isFeatured = project.featured && index < 2
@@ -23,7 +23,7 @@ export function Projects() {
               key={project.id}
               className={`
                 card card-hover group relative overflow-hidden
-                ${isFeatured ? 'md:col-span-2 lg:col-span-1 lg:first:col-span-2' : ''}
+                ${isFeatured ? 'sm:col-span-2 lg:col-span-1 lg:first:col-span-2' : ''}
               `}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -33,22 +33,22 @@ export function Projects() {
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-nova/5 to-pulsar/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative p-6">
+              <div className="relative p-4 sm:p-6">
                 {/* Header with icon and links */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-3 sm:mb-4">
                   {/* Folder icon */}
-                  <div className="w-12 h-12 rounded-lg bg-cosmos flex items-center justify-center text-nova">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-cosmos flex items-center justify-center text-nova">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                     </svg>
                   </div>
 
                   {/* Links */}
-                  <div className="flex gap-3">
+                  <div className="flex gap-2 sm:gap-3">
                     {project.github && (
                       <a
                         href={project.github}
-                        className="text-star-dim hover:text-nova transition-colors"
+                        className="text-star-dim hover:text-nova transition-colors p-1"
                         aria-label="View on GitHub"
                       >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ export function Projects() {
                     {project.link && (
                       <a
                         href={project.link}
-                        className="text-star-dim hover:text-nova transition-colors"
+                        className="text-star-dim hover:text-nova transition-colors p-1"
                         aria-label="View project"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,17 +71,17 @@ export function Projects() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display text-xl text-star-bright mb-2 group-hover:text-nova transition-colors">
+                <h3 className="font-display text-lg sm:text-xl text-star-bright mb-1.5 sm:mb-2 group-hover:text-nova transition-colors">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-star-dim text-sm leading-relaxed mb-4">
+                <p className="text-star-dim text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
                   {project.tags.map((tag) => (
                     <Badge key={tag} variant="default" size="sm">
                       {tag}

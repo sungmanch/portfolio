@@ -76,7 +76,7 @@ export function Hero() {
             Welcome to my constellation
           </motion.p>
 
-          <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-star-bright mb-6">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-star-bright mb-4 sm:mb-6">
             <motion.span
               className="block"
               initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ export function Hero() {
           </h1>
 
           <motion.p
-            className="text-star-dim text-xl lg:text-2xl max-w-2xl mx-auto mb-8"
+            className="text-star-dim text-lg sm:text-xl lg:text-2xl max-w-2xl mx-auto mb-6 sm:mb-8 px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.6 }}
@@ -105,7 +105,7 @@ export function Hero() {
           </motion.p>
 
           <motion.p
-            className="text-star-dim/70 text-lg max-w-xl mx-auto mb-12"
+            className="text-star-dim/70 text-base sm:text-lg max-w-xl mx-auto mb-8 sm:mb-12 px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
@@ -115,7 +115,7 @@ export function Hero() {
 
           {/* Social Links */}
           <motion.div
-            className="flex items-center justify-center gap-4"
+            className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.6 }}
@@ -124,7 +124,7 @@ export function Hero() {
               <motion.a
                 key={link.name}
                 href={link.url}
-                className="w-12 h-12 rounded-full bg-cosmos/50 border border-cosmos flex items-center justify-center text-star-dim hover:text-nova hover:border-nova/50 transition-all duration-300"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-cosmos/50 border border-cosmos flex items-center justify-center text-star-dim hover:text-nova hover:border-nova/50 transition-all duration-300"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -137,26 +137,26 @@ export function Hero() {
             ))}
           </motion.div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <motion.div
-            className="flex flex-col items-center gap-2 text-star-dim"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <span className="text-xs font-mono tracking-wider">Scroll</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator - positioned relative to section, not content */}
+      <motion.div
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <motion.div
+          className="flex flex-col items-center gap-2 text-star-dim"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <span className="text-xs font-mono tracking-wider">Scroll</span>
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

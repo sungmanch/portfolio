@@ -45,7 +45,7 @@ export function Contact() {
         />
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <div className="relative z-10 max-w-3xl mx-auto text-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,18 +53,18 @@ export function Contact() {
           transition={{ duration: 0.6 }}
         >
           {/* Heading */}
-          <h2 className="font-display text-4xl lg:text-6xl text-star-bright mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl text-star-bright mb-4 sm:mb-6">
             Let&apos;s Connect
           </h2>
 
-          <p className="text-star-dim text-lg lg:text-xl mb-8 max-w-xl mx-auto">
+          <p className="text-star-dim text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-xl mx-auto">
             I&apos;m always interested in hearing about new opportunities,
             collaborations, or just having a chat about technology and research.
           </p>
 
           {/* Email CTA */}
           <motion.div
-            className="mb-12"
+            className="mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -75,7 +75,7 @@ export function Contact() {
               variant="primary"
               size="lg"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Say Hello
@@ -84,7 +84,7 @@ export function Contact() {
 
           {/* Social links */}
           <motion.div
-            className="flex items-center justify-center gap-6"
+            className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 flex-wrap"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -94,17 +94,17 @@ export function Contact() {
               <motion.a
                 key={link.name}
                 href={link.url}
-                className="group flex flex-col items-center gap-2"
+                className="group flex flex-col items-center gap-1.5 sm:gap-2"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -4 }}
               >
-                <span className="w-14 h-14 rounded-xl bg-nebula/50 border border-cosmos flex items-center justify-center text-star-dim group-hover:text-nova group-hover:border-nova/50 transition-all duration-300">
+                <span className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl bg-nebula/50 border border-cosmos flex items-center justify-center text-star-dim group-hover:text-nova group-hover:border-nova/50 transition-all duration-300">
                   {iconMap[link.icon]}
                 </span>
-                <span className="text-star-dim text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-star-dim text-[10px] sm:text-xs font-mono opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity">
                   {link.name}
                 </span>
               </motion.a>
@@ -114,17 +114,17 @@ export function Contact() {
 
         {/* Footer */}
         <motion.footer
-          className="mt-20 pt-8 border-t border-cosmos"
+          className="mt-12 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-cosmos"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          <p className="text-star-dim text-sm font-mono">
+          <p className="text-star-dim text-xs sm:text-sm font-mono">
             Designed & built by{' '}
             <span className="text-nova">{personalInfo.name}</span>
           </p>
-          <p className="text-star-dim/50 text-xs font-mono mt-2">
+          <p className="text-star-dim/50 text-[10px] sm:text-xs font-mono mt-1.5 sm:mt-2">
             © {new Date().getFullYear()} All rights reserved
           </p>
         </motion.footer>
