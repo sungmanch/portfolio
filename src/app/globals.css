@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.cosmos') theme('colors.void');
+  }
+
+  body {
+    @apply bg-void text-star-bright antialiased;
+  }
+
+  ::selection {
+    @apply bg-nova/30 text-star-bright;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-void;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cosmos rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-pulsar/50;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-6xl mx-auto px-6 lg:px-8;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-nova via-pulsar to-supernova bg-clip-text text-transparent;
+  }
+
+  .glow-nova {
+    box-shadow: 0 0 20px theme('colors.nova / 30%'),
+                0 0 40px theme('colors.nova / 20%'),
+                0 0 60px theme('colors.nova / 10%');
+  }
+
+  .glow-supernova {
+    box-shadow: 0 0 20px theme('colors.supernova / 30%'),
+                0 0 40px theme('colors.supernova / 20%'),
+                0 0 60px theme('colors.supernova / 10%');
+  }
+
+  .glow-pulsar {
+    box-shadow: 0 0 20px theme('colors.pulsar / 30%'),
+                0 0 40px theme('colors.pulsar / 20%'),
+                0 0 60px theme('colors.pulsar / 10%');
+  }
+
+  .card {
+    @apply bg-nebula/50 backdrop-blur-sm border border-cosmos rounded-2xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:border-nova/30 hover:bg-nebula/80;
+  }
+}
+
+@layer utilities {
+  .star {
+    @apply absolute rounded-full bg-star-bright;
+  }
+
+  .star-sm {
+    @apply w-0.5 h-0.5;
+  }
+
+  .star-md {
+    @apply w-1 h-1;
+  }
+
+  .star-lg {
+    @apply w-1.5 h-1.5;
+  }
+}
