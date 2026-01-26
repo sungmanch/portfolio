@@ -8,6 +8,9 @@ interface ShippingVelocityProps {
   className?: string
 }
 
+// January 2026 has 31 days
+const DAYS_IN_MONTH = 31
+
 export function ShippingVelocity({ className = '' }: ShippingVelocityProps) {
   // Get 2026 projects with shipping data
   const shippedProjects = useMemo(() => {
@@ -26,10 +29,10 @@ export function ShippingVelocity({ className = '' }: ShippingVelocityProps) {
   const currentMonth = 'January'
   const currentYear = '2026'
 
-  // Calculate max days for bar scaling
-  const maxDays = Math.max(...shippedProjects.map((p) => p.shippedInDays || 7))
-
   if (totalProjects === 0) return null
+
+  // Generate day markers for the calendar header
+  const dayMarkers = [1, 7, 14, 21, 28]
 
   return (
     <motion.div
@@ -62,6 +65,23 @@ export function ShippingVelocity({ className = '' }: ShippingVelocityProps) {
         </motion.p>
       </div>
 
+      {/* Calendar Header - Day markers */}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-32 flex-shrink-0" /> {/* Spacer for project name column */}
+        <div className="flex-1 relative h-6">
+          {dayMarkers.map((day) => (
+            <div
+              key={day}
+              className="absolute text-xs font-mono text-star-dim/50"
+              style={{ left: `${((day - 1) / DAYS_IN_MONTH) * 100}%` }}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+        <div className="w-20 flex-shrink-0" /> {/* Spacer for days column */}
+      </div>
+
       {/* Timeline Bars */}
       <div className="space-y-4">
         {shippedProjects.map((project, index) => (
@@ -69,7 +89,6 @@ export function ShippingVelocity({ className = '' }: ShippingVelocityProps) {
             key={project.id}
             project={project}
             index={index}
-            maxDays={maxDays}
           />
         ))}
       </div>
