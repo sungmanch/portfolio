@@ -250,6 +250,8 @@ export interface CosmosProject {
   status: ProjectStatus
   targetMarket: TargetMarket[]
   region: MarketRegion[]
+  shippedInDays?: number
+  launchDate?: string
 }
 
 export const CATEGORY_CONFIG: Record<CosmosCategory, { label: string; hex: string }> = {
@@ -275,6 +277,8 @@ export const cosmosProjects: CosmosProject[] = [
     status: 'active',
     targetMarket: ['b2b', 'b2c'],
     region: ['us'],
+    shippedInDays: 7,
+    launchDate: '2026-01-07',
   },
   {
     id: 'costello',
@@ -290,6 +294,8 @@ export const cosmosProjects: CosmosProject[] = [
     status: 'active',
     targetMarket: ['b2b'],
     region: ['us'],
+    shippedInDays: 7,
+    launchDate: '2026-01-14',
   },
   {
     id: 'maison-de-letter',
@@ -304,6 +310,8 @@ export const cosmosProjects: CosmosProject[] = [
     status: 'active',
     targetMarket: ['b2c'],
     region: ['korea'],
+    shippedInDays: 7,
+    launchDate: '2026-01-21',
   },
   {
     id: 'vibewriting',
@@ -318,6 +326,43 @@ export const cosmosProjects: CosmosProject[] = [
     status: 'active',
     targetMarket: ['b2c'],
     region: ['us', 'korea'],
+    shippedInDays: 7,
+    launchDate: '2026-01-26',
+  },
+  {
+    id: 'claude-glm-agent',
+    title: 'Claude GLM Agent',
+    tagline: 'Claude Code plugin for hybrid AI workflows — delegate tasks to GLM models via Z.AI API.',
+    audience: 'Developers using Claude Code who want multi-model orchestration',
+    value: 'Orchestrate multiple GLM workers in parallel for complex analysis tasks',
+    tags: ['Claude Code', 'Plugin', 'AI', 'TypeScript'],
+    link: 'https://github.com/sungmanch/claude-glm-agent',
+    github: 'https://github.com/sungmanch/claude-glm-agent',
+    category: 'dev-tools',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2b', 'b2c'],
+    region: ['us'],
+    shippedInDays: 7,
+    launchDate: '2026-01-20',
+  },
+  {
+    id: 'spc-ai-team',
+    title: 'SPC AI Team',
+    tagline: '17-agent AI development team for solo founders — from concept to shipped product.',
+    audience: 'Solo founders and indie hackers building products alone',
+    value: 'Full product lifecycle management with specialized AI agents (PM, Architect, Designer, Dev, QA, Writer)',
+    tags: ['Claude Code', 'Plugin', 'AI Agents', 'Workflow'],
+    link: 'https://github.com/sungmanch/single-person-company',
+    github: 'https://github.com/sungmanch/single-person-company',
+    featured: true,
+    category: 'dev-tools',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2b', 'b2c'],
+    region: ['us'],
+    shippedInDays: 7,
+    launchDate: '2026-01-24',
   },
   // 2024-2025 - TBD Labs Projects
   {
