@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { personalInfo, socialLinks } from '@/lib/data'
 
 // Generate star positions only on client side to avoid hydration mismatch
@@ -138,6 +139,37 @@ export function Hero() {
                 {iconMap[link.icon]}
               </motion.a>
             ))}
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+            className="mt-8 sm:mt-10"
+          >
+            <Link href="/cosmos">
+              <motion.span
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-nova/50 text-nova font-mono text-sm tracking-wide hover:bg-nova/10 transition-colors duration-300 group"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Explore My Cosmos
+                <svg
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </motion.span>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
