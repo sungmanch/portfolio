@@ -81,7 +81,7 @@ export const timeline: TimelineMilestone[] = [
         link: 'https://www.maisondeletter.com/',
       },
       {
-        name: 'HypeWriting',
+        name: 'VibeWriting',
         description: 'Hyper-personalized blog writing helper',
         link: 'https://personalized-writing.vercel.app/',
       },
@@ -229,6 +229,156 @@ export const projects: Project[] = [
   },
 ]
 
+
+export type CosmosCategory = 'productivity' | 'sales' | 'education' | 'dev-tools'
+export type ProjectStatus = 'active' | 'archived'
+export type TargetMarket = 'b2b' | 'b2c'
+export type MarketRegion = 'us' | 'korea'
+
+export interface CosmosProject {
+  id: string
+  title: string
+  tagline: string
+  audience?: string
+  value?: string
+  tags: string[]
+  link?: string
+  github?: string
+  featured?: boolean
+  category: CosmosCategory
+  year: string
+  status: ProjectStatus
+  targetMarket: TargetMarket[]
+  region: MarketRegion[]
+}
+
+export const CATEGORY_CONFIG: Record<CosmosCategory, { label: string; hex: string }> = {
+  'productivity': { label: 'Productivity', hex: '#fbbf24' },
+  'sales':        { label: 'Sales',        hex: '#34d399' },
+  'education':    { label: 'Education',    hex: '#38bdf8' },
+  'dev-tools':    { label: 'Dev Tools',    hex: '#64ffda' },
+}
+
+export const cosmosProjects: CosmosProject[] = [
+  // 2026 - Vibe Orchestrator Projects
+  {
+    id: 'no-more-ai-slop',
+    title: 'No More AI Slop',
+    tagline: 'AI writing platform that preserves your authentic voice.',
+    audience: 'Writers and creators tired of generic AI output',
+    value: 'Your voice amplified, not replaced',
+    tags: ['Next.js', 'AI', 'Content Creation'],
+    link: 'https://www.nomoreaislop.xyz/',
+    featured: true,
+    category: 'productivity',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2b', 'b2c'],
+    region: ['us'],
+  },
+  {
+    id: 'costello',
+    title: 'Costello',
+    tagline: 'Smart CRM that turns LinkedIn messages into actionable sales insights.',
+    audience: 'Salespeople drowning in manual data entry',
+    value: 'Auto-extracts relationship signals and surfaces follow-ups',
+    tags: ['React', 'AI', 'CRM', 'LinkedIn'],
+    link: 'https://www.costello-app.xyz/',
+    featured: true,
+    category: 'sales',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2b'],
+    region: ['us'],
+  },
+  {
+    id: 'maison-de-letter',
+    title: 'Maison de Letter',
+    tagline: 'Beautiful mobile wedding invitations shared via link — no app needed.',
+    audience: 'Korean couples planning their wedding',
+    value: 'Curated templates, full customization, instant sharing',
+    tags: ['Next.js', 'Mobile', 'Design'],
+    link: 'https://www.maisondeletter.com/',
+    category: 'productivity',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2c'],
+    region: ['korea'],
+  },
+  {
+    id: 'vibewriting',
+    title: 'VibeWriting',
+    tagline: 'Blog writing assistant that learns your unique tone and style.',
+    audience: 'Bloggers who want AI help without losing personality',
+    value: 'Matches your voice by analyzing your past writing (EN/KR)',
+    tags: ['AI', 'Writing', 'Personalization'],
+    link: 'https://personalized-writing.vercel.app/',
+    category: 'productivity',
+    year: '2026',
+    status: 'active',
+    targetMarket: ['b2c'],
+    region: ['us', 'korea'],
+  },
+  // 2024-2025 - TBD Labs Projects
+  {
+    id: 'truvi',
+    title: 'TruVi',
+    tagline: 'Online assessment platform built for the AI era.',
+    audience: 'Universities needing exam integrity at scale',
+    value: 'Behavioral proctoring that works when students have AI access',
+    tags: ['EdTech', 'AI', 'Assessment', 'B2B'],
+    link: 'https://www.truvi.app/',
+    featured: true,
+    category: 'education',
+    year: '2024-2025',
+    status: 'active',
+    targetMarket: ['b2b'],
+    region: ['us'],
+  },
+  {
+    id: 'steev',
+    title: 'Steev',
+    tagline: 'AI agent for autonomous model training and experiment tracking.',
+    audience: 'ML engineers overwhelmed by training overhead',
+    value: 'Auto-tunes hyperparameters, allocates resources, monitors progress',
+    tags: ['MLOps', 'AI Agent', 'Automation'],
+    category: 'dev-tools',
+    year: '2024-2025',
+    status: 'archived',
+    targetMarket: ['b2b'],
+    region: ['us'],
+  },
+  {
+    id: 'ulala-ai',
+    title: 'ULALA AI',
+    tagline: 'Learn Korean through short-form video content powered by AI.',
+    audience: 'Korean language learners seeking engaging methods',
+    value: 'Bite-sized lessons from real media with adaptive difficulty',
+    tags: ['EdTech', 'AI', 'Korean', 'Mobile'],
+    category: 'education',
+    year: '2024-2025',
+    status: 'archived',
+    targetMarket: ['b2c'],
+    region: ['us'],
+  },
+  // 2021-2024 - Intel Projects
+  {
+    id: 'openvino',
+    title: 'OpenVINO Training Extensions',
+    tagline: 'Model training and inference optimization for Intel\'s OpenVINO toolkit.',
+    audience: 'Enterprise teams deploying AI on edge devices',
+    value: '1.5x inference speedup, 40% memory reduction',
+    tags: ['OpenVINO', 'Model Optimization', 'Edge AI', 'C++'],
+    link: 'https://github.com/open-edge-platform/training_extensions',
+    github: 'https://github.com/open-edge-platform/training_extensions',
+    featured: true,
+    category: 'dev-tools',
+    year: '2021-2024',
+    status: 'archived',
+    targetMarket: ['b2b'],
+    region: ['us'],
+  },
+]
 
 export const experience = [
   {
