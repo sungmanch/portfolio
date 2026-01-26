@@ -43,6 +43,18 @@
     @apply bg-gradient-to-r from-nova via-pulsar to-supernova bg-clip-text text-transparent;
   }
 
+  .text-gradient-nova {
+    @apply bg-gradient-to-r from-nova via-emerald-300 to-nova bg-clip-text text-transparent;
+  }
+
+  .text-gradient-supernova {
+    @apply bg-gradient-to-r from-supernova to-pink-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-pulsar {
+    @apply bg-gradient-to-r from-pulsar via-violet-400 to-pulsar bg-clip-text text-transparent;
+  }
+
   .glow-nova {
     box-shadow: 0 0 20px theme('colors.nova / 30%'),
                 0 0 40px theme('colors.nova / 20%'),
