@@ -3,11 +3,19 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useWindowScroll } from '@/hooks/useScrollProgress'
+import Link from 'next/link'
 
-const navItems = [
+interface NavItem {
+  id: string
+  label: string
+  href?: string // For page links (like /cosmos)
+}
+
+const navItems: NavItem[] = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'timeline', label: 'Journey' },
+  { id: 'cosmos', label: 'Cosmos', href: '/cosmos' },
   { id: 'memories', label: 'Memories' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -32,9 +40,12 @@ export function Navigation() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
 
-    navItems.forEach(({ id }) => {
-      const element = document.getElementById(id)
-      if (element) observer.observe(element)
+    navItems.forEach(({ id, href }) => {
+      // Only observe sections (not page links)
+      if (!href) {
+        const element = document.getElementById(id)
+        if (element) observer.observe(element)
+      }
     })
 
     return () => observer.disconnect()
@@ -59,33 +70,53 @@ export function Navigation() {
         animate={{ opacity: showNav ? 1 : 0, x: showNav ? 0 : 20 }}
         transition={{ duration: 0.3 }}
       >
-        {navItems.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => scrollToSection(id)}
-            className="group flex items-center gap-3"
-            aria-label={`Navigate to ${label}`}
-          >
-            <span
-              className={`
-                text-xs font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100
-                transition-opacity duration-300 text-right
-                ${activeSection === id ? 'text-nova' : 'text-star-dim'}
-              `}
+        {navItems.map(({ id, label, href }) => {
+          // Page link (like Cosmos)
+          if (href) {
+            return (
+              <Link
+                key={id}
+                href={href}
+                className="group flex items-center gap-3"
+                aria-label={`Navigate to ${label}`}
+              >
+                <span className="text-xs font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-right text-star-dim group-hover:text-nova">
+                  {label}
+                </span>
+                <span className="w-3 h-3 rounded-full border-2 transition-all duration-300 bg-transparent border-pulsar group-hover:border-nova group-hover:bg-nova/20 scale-75 group-hover:scale-100" />
+              </Link>
+            )
+          }
+
+          // Section anchor
+          return (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="group flex items-center gap-3"
+              aria-label={`Navigate to ${label}`}
             >
-              {label}
-            </span>
-            <span
-              className={`
-                w-3 h-3 rounded-full border-2 transition-all duration-300
-                ${activeSection === id
-                  ? 'bg-nova border-nova scale-100'
-                  : 'bg-transparent border-star-dim group-hover:border-nova scale-75 group-hover:scale-100'
-                }
-              `}
-            />
-          </button>
-        ))}
+              <span
+                className={`
+                  text-xs font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100
+                  transition-opacity duration-300 text-right
+                  ${activeSection === id ? 'text-nova' : 'text-star-dim'}
+                `}
+              >
+                {label}
+              </span>
+              <span
+                className={`
+                  w-3 h-3 rounded-full border-2 transition-all duration-300
+                  ${activeSection === id
+                    ? 'bg-nova border-nova scale-100'
+                    : 'bg-transparent border-star-dim group-hover:border-nova scale-75 group-hover:scale-100'
+                  }
+                `}
+              />
+            </button>
+          )
+        })}
       </motion.nav>
 
       {/* Mobile Navigation */}
@@ -129,7 +160,7 @@ export function Navigation() {
             <div className="absolute inset-0 bg-void/95 backdrop-blur-lg" />
             <nav className="relative h-full flex items-center justify-center px-6">
               <ul className="space-y-5 sm:space-y-6 text-center">
-                {navItems.map(({ id, label }, index) => (
+                {navItems.map(({ id, label, href }, index) => (
                   <motion.li
                     key={id}
                     initial={{ opacity: 0, y: 20 }}
@@ -137,15 +168,25 @@ export function Navigation() {
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <button
-                      onClick={() => scrollToSection(id)}
-                      className={`
-                        text-xl sm:text-2xl font-display transition-colors duration-300
-                        ${activeSection === id ? 'text-nova' : 'text-star-bright hover:text-nova'}
-                      `}
-                    >
-                      {label}
-                    </button>
+                    {href ? (
+                      <Link
+                        href={href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-xl sm:text-2xl font-display transition-colors duration-300 text-pulsar hover:text-nova"
+                      >
+                        {label}
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => scrollToSection(id)}
+                        className={`
+                          text-xl sm:text-2xl font-display transition-colors duration-300
+                          ${activeSection === id ? 'text-nova' : 'text-star-bright hover:text-nova'}
+                        `}
+                      >
+                        {label}
+                      </button>
+                    )}
                   </motion.li>
                 ))}
               </ul>
