@@ -23,14 +23,22 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: 'Sungman Cho | Researcher & Developer',
-  description: 'Personal portfolio showcasing research, projects, and professional journey through the constellation of innovation.',
-  keywords: ['researcher', 'developer', 'portfolio', 'technology', 'innovation'],
+  title: 'Sungman Cho',
+  description: 'I love solving problems and enjoy shipping fast.',
+  keywords: ['founder', 'builder', 'problem solver', 'startup', 'shipping'],
   authors: [{ name: 'Sungman Cho' }],
+  metadataBase: new URL('https://www.sungman.world'),
   openGraph: {
-    title: 'Sungman Cho | Researcher & Developer',
-    description: 'Personal portfolio showcasing research, projects, and professional journey.',
+    title: 'Sungman Cho',
+    description: 'I love solving problems and enjoy shipping fast.',
     type: 'website',
+    url: 'https://www.sungman.world',
+    siteName: 'Sungman Cho',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sungman Cho',
+    description: 'I love solving problems and enjoy shipping fast.',
   },
 }
 
