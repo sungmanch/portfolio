@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CATEGORY_CONFIG, type CosmosCategory, type TargetMarket, type MarketRegion } from '@/lib/data'
+import { CATEGORY_CONFIG, type CosmosCategory, type TargetMarket } from '@/lib/data'
 
 type FilterCategory = 'all' | 'featured' | CosmosCategory
 
@@ -11,8 +11,6 @@ interface FilterTabsProps {
   counts: Record<FilterCategory, number>
   activeMarkets: TargetMarket[]
   onToggleMarket: (market: TargetMarket) => void
-  activeRegions: MarketRegion[]
-  onToggleRegion: (region: MarketRegion) => void
 }
 
 const primaryFilters: { key: FilterCategory; label: string }[] = [
@@ -29,19 +27,12 @@ const marketFilters: { key: TargetMarket; label: string }[] = [
   { key: 'b2c', label: 'B2C' },
 ]
 
-const regionFilters: { key: MarketRegion; label: string }[] = [
-  { key: 'us', label: 'US' },
-  { key: 'korea', label: 'Korea' },
-]
-
 export function FilterTabs({
   activeFilter,
   onFilterChange,
   counts,
   activeMarkets,
   onToggleMarket,
-  activeRegions,
-  onToggleRegion,
 }: FilterTabsProps) {
   return (
     <div className="flex flex-col items-center gap-3 mb-8 sm:mb-12">
@@ -111,7 +102,7 @@ export function FilterTabs({
         })}
       </div>
 
-      {/* Secondary filters: Market + Region */}
+      {/* Secondary filters: Market */}
       <div className="flex gap-2 overflow-x-auto pb-1 px-4 sm:px-0 scrollbar-hide">
         {marketFilters.map((filter) => {
           const isActive = activeMarkets.includes(filter.key)
@@ -125,31 +116,6 @@ export function FilterTabs({
                 ${
                   isActive
                     ? 'bg-pulsar/10 border-pulsar text-pulsar'
-                    : 'bg-cosmos/50 border-cosmos text-star-dim hover:border-star-dim hover:text-star-bright'
-                }
-              `}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {filter.label}
-            </motion.button>
-          )
-        })}
-
-        <span className="text-star-dim/30 self-center px-1">|</span>
-
-        {regionFilters.map((filter) => {
-          const isActive = activeRegions.includes(filter.key)
-          return (
-            <motion.button
-              key={filter.key}
-              onClick={() => onToggleRegion(filter.key)}
-              className={`
-                px-3 py-1.5 rounded-full text-xs font-mono whitespace-nowrap
-                transition-all duration-300 border
-                ${
-                  isActive
-                    ? 'bg-supernova/10 border-supernova text-supernova'
                     : 'bg-cosmos/50 border-cosmos text-star-dim hover:border-star-dim hover:text-star-bright'
                 }
               `}

@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { CosmosBackground } from '@/components/cosmos/CosmosBackground'
 import { CosmosGrid } from '@/components/cosmos/CosmosGrid'
+import { CosmosHero } from '@/components/cosmos/CosmosHero'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -13,13 +14,12 @@ export default function CosmosPage() {
     <main className="relative min-h-screen">
       <CosmosBackground />
 
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        {/* Header */}
-        <div className="max-w-6xl mx-auto mb-12 sm:mb-16">
-          {/* Back link */}
+      <div className="relative z-10">
+        {/* Back link - positioned absolutely */}
+        <div className="absolute top-6 left-4 sm:left-6 lg:left-8 z-20">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-star-dim hover:text-nova transition-colors mb-8 group"
+            className="inline-flex items-center gap-2 text-star-dim hover:text-nova transition-colors group"
           >
             <svg
               className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
@@ -36,18 +36,13 @@ export default function CosmosPage() {
             </svg>
             <span className="font-mono text-sm">Back to Home</span>
           </Link>
-
-          {/* Title */}
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-star-bright mb-4">
-            Cosmos
-          </h1>
-          <p className="text-star-dim text-lg sm:text-xl max-w-2xl">
-            A collection of projects and products I&apos;ve built
-          </p>
         </div>
 
+        {/* Hero Section */}
+        <CosmosHero />
+
         {/* Projects Grid */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
           <CosmosGrid />
         </div>
       </div>
