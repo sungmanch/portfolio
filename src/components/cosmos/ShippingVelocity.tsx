@@ -103,13 +103,20 @@ export function ShippingVelocity({ className = '' }: ShippingVelocityProps) {
 interface ProjectBarProps {
   project: CosmosProject
   index: number
-  maxDays: number
 }
 
-function ProjectBar({ project, index, maxDays }: ProjectBarProps) {
+function ProjectBar({ project, index }: ProjectBarProps) {
   const categoryColor = CATEGORY_CONFIG[project.category].hex
-  const barWidthPercent = ((project.shippedInDays || 7) / 14) * 100 // 14 days = 100%
   const days = project.shippedInDays || 7
+
+  // Calculate bar position based on launch date
+  const launchDate = project.launchDate ? new Date(project.launchDate) : null
+  const launchDay = launchDate ? launchDate.getDate() : 15 // Default to mid-month
+  const startDay = launchDay - days // Day when development started
+
+  // Calculate percentage positions (0-100% across the month)
+  const startPercent = Math.max(0, ((startDay - 1) / DAYS_IN_MONTH) * 100)
+  const widthPercent = (days / DAYS_IN_MONTH) * 100
 
   return (
     <motion.div
@@ -120,7 +127,7 @@ function ProjectBar({ project, index, maxDays }: ProjectBarProps) {
     >
       <div className="flex items-center gap-4">
         {/* Project name */}
-        <div className="w-40 flex-shrink-0">
+        <div className="w-32 flex-shrink-0">
           {project.link ? (
             <a
               href={project.link}
@@ -137,19 +144,39 @@ function ProjectBar({ project, index, maxDays }: ProjectBarProps) {
           )}
         </div>
 
-        {/* Progress bar */}
-        <div className="flex-1 h-6 bg-cosmos/60 rounded-full overflow-hidden relative">
+        {/* Timeline track with positioned bar */}
+        <div className="flex-1 h-8 bg-cosmos/30 rounded-lg overflow-hidden relative">
+          {/* Background grid lines for days */}
+          <div className="absolute inset-0 flex">
+            {[7, 14, 21, 28].map((day) => (
+              <div
+                key={day}
+                className="absolute h-full w-px bg-star-dim/10"
+                style={{ left: `${((day - 1) / DAYS_IN_MONTH) * 100}%` }}
+              />
+            ))}
+          </div>
+
+          {/* The actual progress bar positioned by date */}
           <motion.div
-            className="h-full rounded-full relative"
-            style={{ backgroundColor: categoryColor }}
-            initial={{ width: 0 }}
-            animate={{ width: `${barWidthPercent}%` }}
+            className="absolute h-6 top-1 rounded-md flex items-center justify-start overflow-hidden"
+            style={{
+              backgroundColor: categoryColor,
+              left: `${startPercent}%`,
+            }}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: `${widthPercent}%`, opacity: 1 }}
             transition={{
               delay: 0.5 + index * 0.15,
               duration: 0.8,
               ease: 'easeOut',
             }}
           >
+            {/* Category label on bar */}
+            <span className="px-2 text-xs font-mono text-void/80 font-medium whitespace-nowrap">
+              {CATEGORY_CONFIG[project.category].label}
+            </span>
+
             {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -162,14 +189,6 @@ function ProjectBar({ project, index, maxDays }: ProjectBarProps) {
               }}
             />
           </motion.div>
-
-          {/* Category label on bar */}
-          <span
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-mono text-void/80 font-medium"
-            style={{ opacity: barWidthPercent > 30 ? 1 : 0 }}
-          >
-            {CATEGORY_CONFIG[project.category].label}
-          </span>
         </div>
 
         {/* Days count */}
@@ -184,21 +203,6 @@ function ProjectBar({ project, index, maxDays }: ProjectBarProps) {
           </span>
         </motion.div>
       </div>
-
-      {/* Launch date (subtle) */}
-      {project.launchDate && (
-        <motion.div
-          className="ml-44 mt-1 text-xs text-star-dim/40 font-mono"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 + index * 0.1 }}
-        >
-          Launched {new Date(project.launchDate).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-          })}
-        </motion.div>
-      )}
     </motion.div>
   )
 }
