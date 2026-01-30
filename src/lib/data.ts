@@ -49,9 +49,17 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const aboutText = `
-AI engineer and founder with 6+ years of experience building and deploying AI products for enterprise customers. Led product development from concept to MVP with rapid iteration based on direct customer feedback.
+Everyone is born with a dream.
+Society teaches you to call it "unrealistic."
 
-My expertise combines deep technical knowledge in computer vision and model optimization with hands-on customer-facing experience across media, healthcare, government, and commercial sectors.
+I kept mine.
+
+The goal isn't success. It's refusing to become someone you're not.
+
+4 years in AI. 2 years building. Still learning.
+Still refusing.
+
+That's how I make Korea proud—by not settling.
 `
 
 export const missionStatement = `"Make Korea proud. Inspire the bold."`
