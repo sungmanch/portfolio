@@ -43,6 +43,7 @@ export const personalInfo = {
 
 export const socialLinks: SocialLink[] = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sungman-cho', icon: 'linkedin' },
+  { name: 'X', url: 'https://x.com/smcho91', icon: 'twitter' },
   { name: 'GitHub', url: 'https://github.com/sungmanch', icon: 'github' },
   { name: 'Email', url: 'mailto:sungman.cho@tbdlabs.team', icon: 'email' },
 ]
